@@ -1,0 +1,39 @@
+{
+  "name": "valor-por-extenso",
+  "version": "1.0.0",
+  "description": "Números e valores em reais escritos por extenso em português do Brasil, com ordinais, porcentagens e CLI.",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "extenso": "./bin/extenso.js"
+  },
+  "files": [
+    "src",
+    "bin"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "extenso",
+    "por-extenso",
+    "numero-por-extenso",
+    "valor-por-extenso",
+    "reais",
+    "cheque",
+    "pt-br",
+    "brasil"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micdog22/valor-por-extenso.git"
+  },
+  "homepage": "https://micdog22.github.io/valor-por-extenso/"
+}

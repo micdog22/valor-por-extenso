@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valor por Extenso — números e valores em reais por extenso</title>
+  <meta name="description" content="Escreva números e valores em reais por extenso em português do Brasil, para cheques, recibos e contratos. Também ordinais e porcentagens.">
+  <meta name="theme-color" content="#166534">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./demo.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Valor por Extenso</h1>
+    <p class="lead">Números e valores em reais escritos por extenso, do jeito certo para cheques, recibos e contratos.</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="input-title">
+      <h2 id="input-title" class="visually-hidden">Valor e opções</h2>
+      <form id="form" autocomplete="off" novalidate>
+        <label for="value">Valor</label>
+        <input id="value" name="value" type="text" inputmode="decimal" spellcheck="false" value="1.234,56" aria-describedby="value-hint">
+        <p id="value-hint" class="hint">Aceita 1.234,56, 1234.56 ou R$ 1.234,56. Use o sinal de menos para negativos.</p>
+
+        <fieldset class="group">
+          <legend>Escrever como</legend>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="mode" value="monetario" checked><span>Reais</span></label>
+            <label class="pill"><input type="radio" name="mode" value="numero"><span>Número</span></label>
+            <label class="pill"><input type="radio" name="mode" value="ordinal"><span>Ordinal</span></label>
+            <label class="pill"><input type="radio" name="mode" value="porcentagem"><span>Porcentagem</span></label>
+          </div>
+        </fieldset>
+
+        <div class="options">
+          <fieldset class="group" id="gender-group" aria-describedby="gender-hint">
+            <legend>Gênero</legend>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="gender" value="masculino" checked><span>Masculino</span></label>
+              <label class="pill"><input type="radio" name="gender" value="feminino"><span>Feminino</span></label>
+            </div>
+            <p id="gender-hint" class="hint">Vale para números e ordinais: “vinte e uma”, “duzentas”, “vigésima”.</p>
+          </fieldset>
+
+          <fieldset class="group">
+            <legend>Grafia</legend>
+            <label class="check" for="catorze-toggle"><input type="checkbox" id="catorze-toggle" name="catorze"> Escrever “catorze” em vez de “quatorze”</label>
+          </fieldset>
+        </div>
+      </form>
+    </section>
+
+    <section class="card result" aria-labelledby="result-title">
+      <h2 id="result-title">Por extenso</h2>
+      <p id="output" class="output" aria-live="polite"></p>
+      <div class="actions">
+        <button type="button" class="btn" id="copy-button">Copiar texto</button>
+        <span id="notice" class="notice" role="status"></span>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="examples-title">
+      <h2 id="examples-title">Exemplos</h2>
+      <div class="examples" id="examples">
+        <button type="button" class="chip" data-value="1.500.000" data-mode="monetario">R$ 1.500.000,00</button>
+        <button type="button" class="chip" data-value="2.000.000,10" data-mode="monetario">R$ 2.000.000,10</button>
+        <button type="button" class="chip" data-value="1.250" data-mode="monetario">R$ 1.250,00</button>
+        <button type="button" class="chip" data-value="0,99" data-mode="monetario">R$ 0,99</button>
+        <button type="button" class="chip" data-value="21" data-mode="numero" data-gender="feminino">21 (feminino)</button>
+        <button type="button" class="chip" data-value="342" data-mode="ordinal">342º</button>
+        <button type="button" class="chip" data-value="12,5" data-mode="porcentagem">12,5%</button>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="usage-title">
+      <h2 id="usage-title">Use no seu projeto</h2>
+      <p>Biblioteca JavaScript sem dependências, para Node.js e navegador, com linha de comando.</p>
+      <pre><code>npm install github:micdog22/valor-por-extenso
+
+import { porExtenso, ordinal, porcentagem } from 'valor-por-extenso';
+
+porExtenso('1.234,56');
+// 'mil duzentos e trinta e quatro reais e cinquenta e seis centavos'
+porExtenso(21, { modo: 'numero', genero: 'feminino' }); // 'vinte e uma'
+ordinal(23);          // 'vigésimo terceiro'
+porcentagem('12,5');  // 'doze vírgula cinco por cento'</code></pre>
+      <details>
+        <summary>Regras usadas</summary>
+        <ul>
+          <li>100 é “cem”; de 101 a 199 usa-se “cento e …”.</li>
+          <li>1.000 é “mil”, nunca “um mil”.</li>
+          <li>Entre as classes (mil, milhão…) o “e” só aparece quando a classe seguinte é menor que 100 ou uma centena redonda: “mil e duzentos”, “mil e noventa e nove”, mas “mil duzentos e cinquenta”.</li>
+          <li>Milhões, bilhões etc. exatos levam “de” antes da moeda: “um milhão de reais”, mas “um milhão e quinhentos mil reais”.</li>
+        </ul>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Tudo roda no seu navegador. Código aberto no <a href="https://github.com/micdog22/valor-por-extenso">GitHub</a> · Licença MIT</p>
+  </footer>
+</body>
+</html>
