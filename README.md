@@ -1,4 +1,4 @@
-# Valor por Extenso — números e valores em reais escritos por extenso (JavaScript • Node.js)
+# Valor por Extenso: números e valores em reais escritos por extenso (JavaScript • Node.js)
 
 Biblioteca sem dependências para escrever números e valores em reais por extenso, em português do Brasil, do jeito que se escreve em cheques, recibos, notas promissórias e contratos. Também escreve ordinais ("vigésimo terceiro") e porcentagens ("doze vírgula cinco por cento"). Acompanha uma linha de comando e uma página de demonstração.
 
@@ -124,4 +124,4 @@ Issues e pull requests são bem-vindos.
 
 ## Licença
 
-MIT — veja [LICENSE](LICENSE).
+MIT. Veja [LICENSE](LICENSE).
